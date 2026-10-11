@@ -2,599 +2,721 @@
 <html lang="tr">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Göktuğ & Yaren ❤️</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#090713">
+<meta name="description" content="Göktuğ ve Yaren için hazırlanmış özel bir dijital evren.">
+<title>Göktuğ × Yaren — Sonsuzluğa Açılan Kapı</title>
 <style>
-* {
-  box-sizing: border-box;
-  margin: 0;
-  padding: 0;
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=DM+Sans:wght@400;500;600;700&display=swap');
+:root{
+  --bg:#090713;
+  --panel:#151020;
+  --pink:#ff9dc9;
+  --pink2:#f25f9f;
+  --lav:#c7b7ff;
+  --cream:#fff3f8;
+  --muted:#b6a8c6;
+  --line:#ffffff18;
 }
-:root {
-  --pink: #ff8bb8;
-  --dark: #190e25;
-  --light: #fff0f7;
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{
+  background:var(--bg);
+  color:var(--cream);
+  font-family:"DM Sans",sans-serif;
+  overflow-x:hidden;
 }
-body {
-  font-family: Georgia, serif;
-  color: var(--light);
-  background: var(--dark);
-  overflow-x: hidden;
-}
-button {
-  font-family: inherit;
-  cursor: pointer;
-}
-.hero {
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  text-align: center;
-  padding: 30px 20px;
+button{font:inherit;cursor:pointer}
+button:focus-visible{outline:2px solid white;outline-offset:4px}
+::selection{background:#f25f9f;color:white}
+#cosmos{
+  position:fixed;inset:0;z-index:-2;overflow:hidden;
   background:
-    radial-gradient(ellipse at top, #71375f 0%, transparent 60%),
-    linear-gradient(160deg, #190e25, #32152f, #130d22);
+    radial-gradient(ellipse at 15% 15%,#43255c66,transparent 40%),
+    radial-gradient(ellipse at 85% 65%,#64264c55,transparent 42%),
+    #090713;
 }
-.small-title {
-  letter-spacing: 5px;
-  color: #ffc4dc;
-  font: 11px Arial, sans-serif;
-  margin-bottom: 20px;
+.star{
+  position:absolute;width:2px;height:2px;border-radius:50%;
+  background:white;animation:twinkle var(--speed,3s) infinite alternate;
 }
-h1 {
-  font-size: clamp(42px, 10vw, 78px);
-  color: #fff1f8;
-  text-shadow: 0 0 25px #ff6da5;
-  margin-bottom: 16px;
+@keyframes twinkle{to{opacity:.2;transform:scale(.5)}}
+@keyframes float{50%{transform:translateY(-14px)}}
+@keyframes pulse{50%{transform:scale(1.14)}}
+@keyframes rotate{to{transform:rotate(360deg)}}
+@keyframes rise{to{transform:translateY(-110vh) rotate(30deg);opacity:0}}
+@keyframes appear{from{opacity:0;transform:translateY(18px)}to{opacity:1;transform:translateY(0)}}
+.topbar{
+  position:absolute;top:0;left:0;width:100%;z-index:5;
+  display:flex;justify-content:space-between;align-items:center;
+  padding:25px 6%;
 }
-.hero p {
-  max-width: 520px;
-  line-height: 1.8;
-  color: #f7dce9;
-  margin-bottom: 28px;
+.brand{font-size:12px;letter-spacing:3px}
+.brand b{color:var(--pink);font-weight:600}
+.topnote{font-size:10px;letter-spacing:2px;color:var(--muted)}
+.hero{
+  min-height:100svh;position:relative;display:flex;
+  flex-direction:column;justify-content:center;align-items:center;
+  text-align:center;padding:110px 22px 65px;overflow:hidden;
 }
-.main-button {
-  background: linear-gradient(135deg, #ff9bc2, #e84d91);
-  border: none;
-  color: #351026;
-  padding: 15px 25px;
-  border-radius: 30px;
-  font-size: 16px;
-  box-shadow: 0 0 25px #ff75ad44;
-  transition: transform .2s;
+.orbit{
+  position:absolute;width:min(78vw,440px);aspect-ratio:1;
+  border:1px solid #ff9dc91b;border-radius:50%;
+  animation:rotate 50s linear infinite;pointer-events:none;
 }
-.main-button:hover {
-  transform: scale(1.05);
+.orbit:before,.orbit:after{
+  content:"";position:absolute;inset:12%;
+  border:1px solid #c7b7ff20;border-radius:50%;
 }
-.scroll-note {
-  margin-top: 35px;
-  font: 11px Arial, sans-serif;
-  color: #d8a8c2;
-  letter-spacing: 2px;
+.orbit:after{inset:27%}
+.orbit-dot{
+  position:absolute;top:12%;left:50%;width:9px;height:9px;
+  background:var(--pink);border-radius:50%;box-shadow:0 0 22px var(--pink);
 }
-#world {
-  display: none;
-  padding: 55px 16px 75px;
-  min-height: 100vh;
-  background:
-    radial-gradient(ellipse at 50% 0%, #52304f, transparent 65%),
-    linear-gradient(#1b1830, #132a2c 65%, #15251f);
+.hero-inner{position:relative;z-index:1;animation:appear 1.2s ease}
+.eyebrow{
+  color:var(--pink);font-size:10px;letter-spacing:5px;
+  margin-bottom:28px;
 }
-.section-heading {
-  text-align: center;
-  font-size: clamp(28px, 6vw, 42px);
-  color: #ffc2da;
-  margin-bottom: 12px;
+.hero h1{
+  font:500 clamp(53px,12vw,110px)/.92 "Cormorant Garamond",serif;
+  letter-spacing:-2px;
 }
-.section-subtitle {
-  text-align: center;
-  color: #e4c8db;
-  line-height: 1.7;
-  max-width: 600px;
-  margin: 0 auto 30px;
+.hero h1 .amp{color:var(--pink);font-style:italic}
+.hero h1 .second{display:block;color:#f5ddeb;margin-top:10px}
+.hero-copy{
+  max-width:480px;margin:26px auto 0;color:#c9bad4;
+  font-size:13px;line-height:2;
 }
-.garden {
-  max-width: 850px;
-  margin: auto;
-  border: 1px solid #ffffff25;
-  border-radius: 28px;
-  overflow: hidden;
-  background:
-    radial-gradient(ellipse at 50% 90%, #3b684d, transparent 55%),
-    radial-gradient(ellipse at 20% 35%, #254d44, transparent 45%),
-    linear-gradient(#18283a, #253c42 65%, #24482f);
-  box-shadow: 0 15px 50px #0004;
+.primary,.outline{
+  border-radius:40px;padding:15px 25px;transition:.25s;
 }
-.sky {
-  height: 65px;
-  padding: 20px;
-  text-align: center;
-  letter-spacing: 5px;
-  color: #ffe0f0;
-  font-size: 14px;
+.primary{
+  border:1px solid #ffc3df;background:linear-gradient(110deg,#ffc0df,#f36ca7);
+  color:#2a1025;margin-top:30px;box-shadow:0 0 35px #f25f9f22;
 }
-.garden-scene {
-  position: relative;
-  min-height: 360px;
-  overflow: hidden;
+.primary:hover{transform:translateY(-3px);box-shadow:0 0 40px #f25f9f55}
+.outline{border:1px solid #ff9dc966;background:#ffffff08;color:var(--cream)}
+.outline:hover{background:#ff9dc91a}
+.hero-foot{margin-top:35px;color:#82738f;font-size:9px;letter-spacing:3px}
+.side-heart{position:absolute;color:#ff9dc9;opacity:.4;animation:float 5s ease-in-out infinite}
+.side-heart.one{left:12%;top:32%;font-size:23px}
+.side-heart.two{right:12%;top:63%;font-size:17px;animation-delay:1s}
+main{display:none}
+.section{padding:85px 20px}
+.wrap{max-width:1000px;margin:auto}
+.kicker{text-align:center;color:var(--pink);font-size:10px;letter-spacing:4px;margin-bottom:15px}
+.heading{
+  font:500 clamp(38px,7vw,62px)/1.08 "Cormorant Garamond",serif;
+  text-align:center;
 }
-.moon {
-  position: absolute;
-  top: 15px;
-  right: 30px;
-  width: 55px;
-  height: 55px;
-  border-radius: 50%;
-  background: #fff1ce;
-  box-shadow: 0 0 45px #ffe7b455;
+.description{
+  max-width:580px;text-align:center;margin:18px auto 0;
+  font-size:13px;line-height:2;color:var(--muted);
 }
-.path {
-  position: absolute;
-  bottom: -70px;
-  left: 50%;
-  transform: translateX(-50%);
-  width: 180px;
-  height: 250px;
-  background: #a88a7855;
-  border-radius: 50% 50% 0 0;
+.date-panel{
+  max-width:800px;margin:35px auto 0;padding:30px 20px;
+  border:1px solid var(--line);border-radius:25px;text-align:center;
+  background:linear-gradient(135deg,#ffffff08,#ff9dc909);
+  box-shadow:0 20px 70px #0003;
 }
-.flower {
-  position: absolute;
-  font-size: 27px;
-  animation: sway 3s ease-in-out infinite alternate;
+.date-label{font-size:10px;letter-spacing:4px;color:var(--pink)}
+.special-date{
+  font:500 clamp(35px,8vw,62px) "Cormorant Garamond",serif;
+  margin:12px 0;color:#fff0f7;
 }
-.f1 { left: 8%; bottom: 45px; }
-.f2 { left: 20%; bottom: 100px; animation-delay: .7s; }
-.f3 { right: 12%; bottom: 60px; animation-delay: 1s; }
-.f4 { right: 22%; bottom: 130px; animation-delay: .3s; }
-.f5 { left: 35%; bottom: 25px; animation-delay: .9s; }
-.f6 { right: 38%; bottom: 35px; animation-delay: .5s; }
-.couple {
-  position: absolute;
-  bottom: 38px;
-  left: 50%;
-  transform: translateX(-50%);
-  display: flex;
-  align-items: flex-end;
-  justify-content: center;
-  gap: 12px;
-  width: 100%;
-  z-index: 2;
-  transition: left .8s ease;
+.date-subtitle{font-size:12px;color:var(--muted)}
+.timer{
+  display:grid;grid-template-columns:repeat(4,minmax(0,1fr));
+  gap:12px;max-width:550px;margin:28px auto 0;
 }
-.person {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 8px;
-  font: 13px Arial, sans-serif;
-  color: #fff1f8;
-  text-shadow: 0 2px 8px #000;
+.time-box{
+  padding:17px 6px;border:1px solid #ffffff13;border-radius:16px;
+  background:#ffffff06;
 }
-.person-photo {
-  width: clamp(78px, 20vw, 125px);
-  height: clamp(100px, 25vw, 155px);
-  object-fit: cover;
-  object-position: center 35%;
-  border: 3px solid #ffb1d1;
-  border-radius: 48% 48% 18px 18px;
-  box-shadow: 0 0 24px #ff85b777;
-  background: #39253a;
+.time-number{font:500 clamp(25px,5vw,37px) "Cormorant Garamond",serif;color:var(--pink)}
+.time-label{font-size:9px;color:var(--muted);letter-spacing:1px;margin-top:4px}
+.garden{
+  margin:38px auto 0;max-width:880px;border:1px solid var(--line);
+  border-radius:28px;overflow:hidden;
+  background:linear-gradient(#17182e,#30213b 60%,#19352d);
+  box-shadow:0 25px 80px #0005;
 }
-.heart-between {
-  font-size: 27px;
-  padding-bottom: 32px;
-  animation: heartbeat 1s infinite;
+.garden-sky{height:65px;text-align:center;padding:22px;color:#ffe4f2;letter-spacing:7px}
+.garden-scene{position:relative;height:350px;overflow:hidden}
+.moon{
+  position:absolute;top:24px;right:8%;width:54px;height:54px;
+  background:#fff0d4;border-radius:50%;box-shadow:0 0 45px #fff0d455;
 }
-.garden-caption {
-  text-align: center;
-  padding: 18px;
-  color: #f3d5e6;
-  font-size: 14px;
-  line-height: 1.7;
+.tree{position:absolute;bottom:85px;font-size:clamp(42px,8vw,76px);animation:float 5s infinite ease-in-out}
+.tree.left{left:7%}.tree.right{right:7%;animation-delay:1s}
+.ground{
+  position:absolute;bottom:0;width:100%;height:34%;
+  background:linear-gradient(#2d5b4380,#193c2a);
+  clip-path:ellipse(75% 75% at 50% 100%);
 }
-.landmarks {
-  display: grid;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
-  gap: 12px;
-  max-width: 850px;
-  margin: 25px auto 0;
+.path{
+  position:absolute;bottom:-50px;left:50%;transform:translateX(-50%);
+  width:35%;height:210px;background:#c5a47c40;
+  clip-path:polygon(40% 0,60% 0,100% 100%,0 100%);
 }
-.landmark {
-  min-height: 125px;
-  border: 1px solid #ffc3df38;
-  background: #ffffff09;
-  border-radius: 20px;
-  color: #fff0f7;
-  padding: 17px 8px;
-  font-size: 14px;
-  line-height: 1.6;
-  transition: .2s;
+.flower{position:absolute;z-index:1;font-size:24px;animation:float 4s infinite ease-in-out}
+.f1{left:12%;bottom:35px}.f2{left:25%;bottom:80px;animation-delay:1s}
+.f3{right:15%;bottom:40px;animation-delay:.5s}.f4{right:26%;bottom:90px;animation-delay:1.5s}
+.couple{
+  position:absolute;z-index:2;bottom:35px;left:50%;transform:translateX(-50%);
+  display:flex;align-items:flex-end;gap:18px;
 }
-.landmark:hover {
-  background: #ff8bb820;
-  transform: translateY(-4px);
+.person{text-align:center;min-width:70px}
+.avatar{
+  position:relative;width:58px;height:104px;margin:auto;
+  animation:float 3s ease-in-out infinite;
 }
-.landmark span {
-  display: block;
-  font-size: 29px;
-  margin-bottom: 8px;
+.avatar .head{
+  position:absolute;top:0;left:14px;width:31px;height:34px;
+  border-radius:48%;background:#ffd7c5;box-shadow:inset -4px -2px #e8ad9f;
 }
-.content-section {
-  max-width: 760px;
-  margin: 70px auto 0;
-  text-align: center;
+.avatar .hair{
+  position:absolute;z-index:2;top:-5px;left:11px;width:37px;height:21px;
+  border-radius:50% 50% 35% 35%;background:#382333;
 }
-.content-section h2 {
-  color: #ffc2da;
-  font-size: 30px;
-  margin-bottom: 18px;
+.avatar .body{
+  position:absolute;top:31px;left:4px;width:51px;height:67px;
+  background:linear-gradient(135deg,#a18be9,#6254a0);
+  clip-path:polygon(25% 0,75% 0,100% 100%,0 100%);
 }
-.content-section p {
-  line-height: 1.9;
-  color: #f0d9e6;
+.avatar.girl .hair{height:36px}
+.avatar.girl .body{background:linear-gradient(135deg,#ffadd2,#c04d8c)}
+.person-name{font-size:11px;color:#fff1f8;margin-top:6px}
+.couple-heart{font-size:25px;padding-bottom:25px;animation:pulse 1.2s infinite}
+.scene-caption{
+  position:absolute;bottom:13px;left:0;width:100%;text-align:center;
+  color:#f4d8e8;font-size:11px;z-index:3;
 }
-.memory-grid {
-  display: grid;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: 14px;
-  margin-top: 25px;
+.garden-bottom{text-align:center;padding:19px;color:#cdbbd4;font-size:12px;line-height:1.8}
+.explore-grid{
+  display:grid;grid-template-columns:repeat(3,minmax(0,1fr));
+  gap:15px;margin-top:28px;
 }
-.memory-card {
-  background: #ffffff09;
-  border: 1px solid #ffffff1a;
-  border-radius: 18px;
-  padding: 22px 15px;
-  line-height: 1.8;
-  color: #f8dce9;
+.explore-card{
+  min-height:170px;text-align:left;padding:23px 19px;
+  border:1px solid var(--line);border-radius:22px;
+  color:var(--cream);background:linear-gradient(145deg,#ffffff0a,#ffffff03);
+  transition:.3s;
 }
-.memory-card strong {
-  display: block;
-  color: #ffc2da;
-  margin-bottom: 8px;
+.explore-card:hover{transform:translateY(-5px);border-color:#ff9dc977;background:#ff9dc90d}
+.card-icon{display:block;font-size:28px;margin-bottom:19px}
+.explore-card h3{font:500 24px "Cormorant Garamond",serif;margin-bottom:8px}
+.explore-card p{font-size:11px;color:var(--muted);line-height:1.8}
+.card-more{display:block;margin-top:16px;color:var(--pink);font-size:10px;letter-spacing:1px}
+.letter{
+  max-width:740px;margin:30px auto 0;padding:clamp(25px,5vw,48px);
+  border-radius:5px 25px 25px 25px;
+  color:#4d2942;background:linear-gradient(145deg,#fff4f8,#f5d7e8);
+  box-shadow:0 25px 70px #0003;position:relative;
 }
-.letter {
-  margin-top: 22px;
-  padding: 25px;
-  text-align: left;
-  line-height: 2;
-  color: #4b2440;
-  background: linear-gradient(145deg, #fff0f5, #f9dce9);
-  border-radius: 5px 22px 22px 22px;
-  box-shadow: 0 10px 35px #0003;
+.letter:before{
+  content:"✦";position:absolute;top:15px;right:20px;color:#d77ca9;
 }
-.letter h3 {
-  text-align: center;
-  margin-bottom: 20px;
-  color: #b52f72;
-  font-size: 24px;
+.letter-title{text-align:center;font:600 32px "Cormorant Garamond",serif;margin-bottom:24px;color:#9c376e}
+.letter p{font:400 16px/2 "Cormorant Garamond",serif;margin-top:15px;color:#59354d}
+.signature{text-align:right!important;margin-top:24px!important;color:#9c376e!important;font-size:22px!important}
+.memory-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px;margin-top:30px}
+.memory{
+  padding:24px;border:1px solid var(--line);border-radius:19px;background:#ffffff06;
 }
-.letter p {
-  color: #4b2440;
+.memory .symbol{font-size:25px}
+.memory h3{font:500 23px "Cormorant Garamond",serif;margin:13px 0 8px;color:#ffd0e5}
+.memory p{font-size:12px;line-height:1.9;color:var(--muted)}
+.capsule{
+  max-width:700px;margin:30px auto 0;padding:30px;text-align:center;
+  border:1px solid #c7b7ff44;border-radius:25px;background:#b5a0ff08;
 }
-.secret-box {
-  margin-top: 22px;
-  padding: 22px;
-  border: 1px dashed #ff9fc7;
-  border-radius: 20px;
-  color: #ffd7e9;
-  line-height: 1.8;
+.capsule p{font-size:13px;line-height:2;color:#d6c9e4}
+.capsule button{margin-top:20px}
+.secret-area{
+  max-width:520px;margin:30px auto 0;padding:30px;text-align:center;
+  border:1px solid var(--line);border-radius:24px;background:#ffffff06;
 }
-footer {
-  padding: 55px 15px 25px;
-  text-align: center;
-  color: #cba9c2;
-  font-size: 13px;
-  line-height: 2;
+.secret-area p{font-size:12px;color:var(--muted);line-height:1.9}
+.secret-area input{
+  display:block;width:100%;margin-top:18px;padding:14px 16px;
+  border:1px solid #ffffff25;border-radius:13px;background:#090713;
+  color:white;font:inherit;outline:none;
 }
-#message {
-  display: none;
-  position: fixed;
-  inset: 0;
-  z-index: 20;
-  background: #100a18eF;
-  padding: 20px;
-  align-items: center;
-  justify-content: center;
+.secret-area input:focus{border-color:var(--pink)}
+.secret-area .primary{margin-top:15px}
+.error{min-height:20px;color:#ff9fc7;font-size:12px;margin-top:12px}
+.secret-result{display:none;margin-top:20px;color:#ffd4e7;line-height:1.9;font-family:"Cormorant Garamond",serif;font-size:23px}
+.final-section{text-align:center}
+.final-heart{
+  font-size:54px;display:inline-block;margin:20px;
+  animation:pulse 1.5s infinite;
 }
-.message-card {
-  position: relative;
-  width: 100%;
-  max-width: 460px;
-  background: linear-gradient(145deg, #fff0f7, #f7d8e9);
-  color: #4b2440;
-  padding: 35px 25px;
-  border-radius: 25px;
-  text-align: center;
-  box-shadow: 0 0 50px #ff75ad33;
-  animation: appear .3s ease;
+footer{padding:35px 15px 45px;text-align:center;color:#82738f;font-size:10px;letter-spacing:2px;line-height:2.2}
+footer span{color:var(--pink)}
+.modal{
+  display:none;position:fixed;inset:0;z-index:20;
+  align-items:center;justify-content:center;padding:20px;
+  background:#05040ddd;backdrop-filter:blur(8px);
 }
-.message-card h2 {
-  margin-bottom: 15px;
-  color: #b52f72;
+.modal.show{display:flex}
+.modal-card{
+  width:100%;max-width:460px;max-height:85vh;overflow:auto;
+  padding:32px 25px;border:1px solid #ff9dc955;border-radius:25px;
+  background:linear-gradient(145deg,#21162d,#120d1e);
+  box-shadow:0 20px 90px #0008;animation:appear .3s ease;text-align:center;
 }
-.message-card p {
-  line-height: 1.9;
-  white-space: pre-line;
+.modal-icon{font-size:38px;margin-bottom:14px}
+.modal-card h2{font:500 34px "Cormorant Garamond",serif;color:var(--pink);margin-bottom:15px}
+.modal-card p{font-size:13px;line-height:2;color:#e4d7e9;white-space:pre-line}
+.modal-card .outline{margin-top:23px}
+#heartLayer{position:fixed;inset:0;pointer-events:none;z-index:30;overflow:hidden}
+.burst{position:absolute;bottom:-35px;animation:rise 4s linear forwards}
+@media(max-width:600px){
+  .topbar{padding:20px 5%}
+  .topnote{font-size:8px;letter-spacing:1px}
+  .hero h1{letter-spacing:-1px}
+  .section{padding:65px 17px}
+  .explore-grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}
+  .explore-card{padding:18px 14px;min-height:160px}
+  .explore-card h3{font-size:21px}
+  .scene{border-radius:22px}
+  .garden-scene{height:320px}
+  .tree.left{left:2%}.tree.right{right:2%}
+  .couple{gap:8px}
+  .timer{gap:7px}
+  .time-box{padding:14px 3px}
+  .time-label{font-size:8px;letter-spacing:0}
+  .memory-grid{grid-template-columns:1fr}
+  .letter p{font-size:15px}
+  .secret-area{padding:23px 18px}
 }
-.close-button {
-  margin-top: 23px;
-  padding: 11px 24px;
-  border: none;
-  background: #e85b9a;
-  color: white;
-  border-radius: 25px;
-}
-.floating-heart {
-  position: fixed;
-  bottom: -30px;
-  z-index: 15;
-  pointer-events: none;
-  animation: floatUp 5s linear forwards;
-}
-@keyframes heartbeat {
-  50% { transform: scale(1.25); }
-}
-@keyframes sway {
-  from { transform: rotate(-6deg); }
-  to { transform: rotate(6deg); }
-}
-@keyframes appear {
-  from { opacity: 0; transform: translateY(15px) scale(.96); }
-  to { opacity: 1; transform: translateY(0) scale(1); }
-}
-@keyframes floatUp {
-  to { transform: translateY(-110vh) rotate(35deg); opacity: 0; }
-}
-@media (max-width: 500px) {
-  .landmarks { gap: 7px; }
-  .landmark { font-size: 12px; padding: 13px 5px; }
-  .memory-grid { grid-template-columns: 1fr; }
-  .garden-scene { min-height: 320px; }
-  .couple { gap: 7px; }
+@media(prefers-reduced-motion:reduce){
+  *,*::before,*::after{animation-duration:.01ms!important;scroll-behavior:auto!important}
 }
 </style>
 </head>
 <body>
-<section class="hero" id="home">
-  <div class="small-title">SADECE İKİMİZE AİT BİR DÜNYA</div>
-  <h1>Göktuğ <span style="color:#ff91bb">&</span> Yaren</h1>
-  <p>
-    Bazı insanlar hayatına girer ve dünya eskisi gibi olmaz.
-    Burası bizim hikâyemiz, bizim bahçemiz ve yalnızca bize ait
-    küçük bir sonsuzluk.
-  </p>
-  <button class="main-button" onclick="enterWorld()">
-    Dünyamıza gir ❤️
-  </button>
-  <div class="scroll-note">BİZİM HİKÂYEMİZ DAHA YENİ BAŞLIYOR</div>
-</section>
-<main id="world">
-  <h2 class="section-heading">Bizim küçük evrenimiz ✨</h2>
-  <p class="section-subtitle">
-    Biraz yavaşla, etrafına bak ve kalbinin götürdüğü yere dokun.
-    Bu bahçenin her köşesinde sana ait bir şey var.
-  </p>
-  <section class="garden">
-    <div class="sky">✦　·　✧　·　✦　·　✧</div>
-    <div class="garden-scene">
-      <div class="moon"></div>
-      <div class="path"></div>
-      <span class="flower f1">🌷</span>
-      <span class="flower f2">🌸</span>
-      <span class="flower f3">🌹</span>
-      <span class="flower f4">🌼</span>
-      <span class="flower f5">🌺</span>
-      <span class="flower f6">🌷</span>
-      <div class="couple" id="couple">
-        <div class="person">
-          <img class="person-photo" src="goktug.jpeg.jpeg"
-               alt="Göktuğ'un fotoğrafı">
-          <span>Göktuğ</span>
-        </div>
-        <div class="heart-between">❤️</div>
-        <div class="person">
-          <img class="person-photo" src="yaren.jpeg.jpeg"
-               alt="Yaren'in fotoğrafı">
-          <span>Yaren</span>
-        </div>
-      </div>
-    </div>
-    <div class="garden-caption">
-      🌙 Aynı gökyüzünün altında, kendi küçük dünyamızda…
-    </div>
-  </section>
-  <div class="landmarks">
-    <button class="landmark" onclick="showMessage('memory')">
-      <span>🌷</span>
-      Anılar bahçesi
-    </button>
-    <button class="landmark" onclick="showMessage('letter')">
-      <span>💌</span>
-      Sana mektubum
-    </button>
-    <button class="landmark" onclick="showMessage('future')">
-      <span>🏡</span>
-      Geleceğimiz
-    </button>
-    <button class="landmark" onclick="showMessage('secret')">
-      <span>🔐</span>
-      Gizli köşe
-    </button>
-    <button class="landmark" onclick="showMessage('promise')">
-      <span>⭐</span>
-      Bir söz
-    </button>
-    <button class="landmark" onclick="showMessage('heart')">
-      <span>❤️</span>
-      Kalbimin içi
-    </button>
+<div id="cosmos" aria-hidden="true"></div>
+<div id="heartLayer" aria-hidden="true"></div>
+<header class="topbar">
+  <div class="brand">LOVE<span>CRAFT</span> · PERSONAL</div>
+  <div class="topnote">29 · 04 · 2026 &nbsp; ✦</div>
+</header>
+<section class="hero" id="welcome">
+  <div class="orbit"><span class="orbit-dot"></span></div>
+  <span class="side-heart one">♡</span>
+  <span class="side-heart two">✧</span>
+  <div class="hero-inner">
+    <div class="eyebrow">A STORY WRITTEN IN THE STARS</div>
+    <h1>Göktuğ <span class="amp">×</span><span class="second">Yaren</span></h1>
+    <p class="hero-copy">
+      Bazı hikâyeler kelimelerle anlatılmaz.<br>
+      Bir tarih, iki kalp ve yalnızca bize ait bir evren…
+    </p>
+    <button class="primary" onclick="enterUniverse()">Evrenimize adım at&nbsp; ✦</button>
+    <div class="hero-foot">29 NİSAN 2026 · BİZİM HİKÂYEMİZ</div>
   </div>
-  <section class="content-section">
-    <h2>Seninle güzel olan şeyler</h2>
-    <p>
-      Bazen büyük şeylere gerek yok. Birlikte gülmek,
-      saçma şeylere heyecanlanmak, bir bakışta anlaşmak…
-      Mutluluk bazen tam olarak bunların içinde saklı.
-    </p>
-    <div class="memory-grid">
-      <div class="memory-card">
-        <strong>🌸 En güzel tesadüfüm</strong>
-        Hayatımda yollarımızın kesişmiş olması.
-      </div>
-      <div class="memory-card">
-        <strong>🌙 En sevdiğim an</strong>
-        Senin yanındayken zamanın biraz daha yavaşlaması.
-      </div>
-      <div class="memory-card">
-        <strong>💗 Küçük mutluluğum</strong>
-        Senden gelen küçücük bir mesajın bile yüzümü güldürmesi.
-      </div>
-      <div class="memory-card">
-        <strong>✨ Dileğim</strong>
-        Birlikte daha çok anı biriktirmek.
+</section>
+<main id="universe">
+  <section class="section">
+    <div class="wrap">
+      <div class="kicker">CHAPTER 01 · THE BEGINNING</div>
+      <h2 class="heading">Her şeyin özel olduğu tarih.</h2>
+      <p class="description">
+        Bazı günler takvimde yalnızca bir rakam değildir.
+        Hatırladıkça anlam kazanan, kendi hikâyesini taşıyan bir gündür.
+      </p>
+      <div class="date-panel">
+        <div class="date-label">OUR SPECIAL DATE</div>
+        <div class="special-date">29.04.2026</div>
+        <div class="date-subtitle">Bir tarihten fazlası. Bir hatıradan fazlası.</div>
+        <div class="timer">
+          <div class="time-box"><div class="time-number" id="days">000</div><div class="time-label">GÜN</div></div>
+          <div class="time-box"><div class="time-number" id="hours">00</div><div class="time-label">SAAT</div></div>
+          <div class="time-box"><div class="time-number" id="minutes">00</div><div class="time-label">DAKİKA</div></div>
+          <div class="time-box"><div class="time-number" id="seconds">00</div><div class="time-label">SANİYE</div></div>
+        </div>
+        <p class="description" id="timerCaption">Bu tarihten beri biriken zaman…</p>
       </div>
     </div>
   </section>
-  <section class="content-section">
-    <h2>Yaren'e bir mektup 💌</h2>
-    <div class="letter">
-      <h3>Canım Yaren'im,</h3>
-      <p>
-        Bu sayfayı senin için hazırladım. Çünkü sana olan
-        hislerimi anlatmak için bazen kelimeler yetmiyor.
-        Ben de bizim için küçük bir dünya kurmak istedim.
+  <section class="section" style="padding-top:25px">
+    <div class="wrap">
+      <div class="kicker">CHAPTER 02 · OUR LITTLE WORLD</div>
+      <h2 class="heading">Bizim küçük evrenimiz.</h2>
+      <p class="description">
+        Gerçek fotoğraflara gerek yok. Bu dünyadaki iki küçük karakter,
+        hikâyemizi temsil ediyor.
       </p>
-      <p>
-        Bu dünyada her çiçek bir anıyı, her yıldız bir dileği,
-        ortadaki kalp de sana söylemek istediğim şeyleri
-        temsil ediyor.
-      </p>
-      <p>
-        Seninle daha nice güzel günler yaşamak, birlikte
-        gülmek ve biriktirdiğimiz anılara yıllar sonra
-        dönüp bakmak istiyorum.
-      </p>
-      <p style="text-align:center;margin-top:20px">
-        İyi ki hikâyemizin bir parçasısın. ❤️
-        <br>
-        <strong>Seni seven, Göktuğ.</strong>
-      </p>
+      <div class="garden">
+        <div class="garden-sky">✦　·　✧　·　✦　·　✧</div>
+        <div class="garden-scene" id="gardenScene">
+          <div class="moon"></div>
+          <div class="ground"></div>
+          <div class="path"></div>
+          <div class="tree left">🌳</div>
+          <div class="tree right">🌲</div>
+          <span class="flower f1">🌷</span>
+          <span class="flower f2">🌸</span>
+          <span class="flower f3">🌹</span>
+          <span class="flower f4">🌼</span>
+          <div class="couple" id="couple">
+            <div class="person">
+              <div class="avatar">
+                <div class="character-hair hair"></div>
+                <div class="head"></div>
+                <div class="body"></div>
+              </div>
+              <div class="person-name">Göktuğ</div>
+            </div>
+            <div class="couple-heart">♥</div>
+            <div class="person">
+              <div class="avatar girl">
+                <div class="character-hair hair"></div>
+                <div class="head"></div>
+                <div class="body"></div>
+              </div>
+              <div class="person-name">Yaren</div>
+            </div>
+          </div>
+          <div class="scene-caption">Aynı gökyüzünün altında, kendi dünyamızda.</div>
+        </div>
+        <div class="garden-bottom">
+          Bahçedeki ışıklara dokun. Belki sana anlatacakları bir şey vardır.
+          <br>
+          <button class="outline" onclick="gardenSurprise()" style="margin-top:12px">Bahçeyi keşfet ✧</button>
+        </div>
+      </div>
     </div>
   </section>
-  <section class="content-section">
-    <h2>Birlikte hayal ettiğimiz yarınlar 🏡</h2>
-    <p>
-      Belki yeni yerler keşfederiz, belki hiç planlamadığımız
-      bir günde en güzel anımızı yaşarız. Belki de yıllar sonra
-      bu sayfayı açıp nereden başladığımızı hatırlarız.
-    </p>
-    <div class="secret-box">
-      <span style="font-size:30px">🌠</span>
-      <p style="margin-top:10px">
-        Geleceği bugün bütünüyle bilemeyiz.
-        Ama güzel anılar biriktirmek için her zaman yeni
-        bir günümüz olabilir.
-      </p>
+  <section class="section">
+    <div class="wrap">
+      <div class="kicker">CHAPTER 03 · DISCOVER</div>
+      <h2 class="heading">Biraz daha yaklaş.</h2>
+      <p class="description">Her kapının ardında başka bir küçük sürpriz var.</p>
+      <div class="explore-grid">
+        <button class="explore-card" onclick="openModal('memory')">
+          <span class="card-icon">🌷</span>
+          <h3>Anılar bahçesi</h3>
+          <p>Birlikte biriktirilecek güzel anlara.</p>
+          <span class="card-more">KEŞFET ↗</span>
+        </button>
+        <button class="explore-card" onclick="openModal('letter')">
+          <span class="card-icon">💌</span>
+          <h3>Sana mektubum</h3>
+          <p>İçimden sana kalan birkaç cümle.</p>
+          <span class="card-more">AÇ VE OKU ↗</span>
+        </button>
+        <button class="explore-card" onclick="openModal('future')">
+          <span class="card-icon">🌠</span>
+          <h3>Geleceğimiz</h3>
+          <p>Henüz yaşanmamış güzel ihtimaller.</p>
+          <span class="card-more">HAYAL ET ↗</span>
+        </button>
+        <button class="explore-card" onclick="openModal('promise')">
+          <span class="card-icon">🕊️</span>
+          <h3>Bir söz</h3>
+          <p>Küçük ama anlamlı bir hatırlatma.</p>
+          <span class="card-more">OKU ↗</span>
+        </button>
+        <button class="explore-card" onclick="openModal('stars')">
+          <span class="card-icon">🌌</span>
+          <h3>Yıldız haritamız</h3>
+          <p>29 Nisan 2026 tarihine özel bir gökyüzü.</p>
+          <span class="card-more">YILDIZLARA BAK ↗</span>
+        </button>
+        <button class="explore-card" onclick="openModal('heart')">
+          <span class="card-icon">♡</span>
+          <h3>Kalbimin içi</h3>
+          <p>Bütün bu dünyanın ardındaki neden.</p>
+          <span class="card-more">ÖĞREN ↗</span>
+        </button>
+      </div>
     </div>
   </section>
-  <section class="content-section">
-    <h2>Son bir şey… ❤️</h2>
-    <p>
-      Bu sayfanın en güzel tarafı kodları değil;
-      ona anlam veren hikâyemiz.
-    </p>
-    <button class="main-button" style="margin-top:24px"
-            onclick="showMessage('final')">
-      Son sürprizi aç ✨
-    </button>
+  <section class="section">
+    <div class="wrap">
+      <div class="kicker">CHAPTER 04 · A LETTER</div>
+      <h2 class="heading">Yaren'e.</h2>
+      <p class="description">Bu mektup bir ekrana sığsa da anlamı ondan büyük.</p>
+      <article class="letter">
+        <h3 class="letter-title">Canım Yaren'im,</h3>
+        <p>
+          Bu küçük dünyayı senin için hazırladım. Çünkü bazen birine
+          ne hissettiğini anlatmak için sıradan kelimeler yetmiyor.
+          Ben de bizim için başka bir yol seçmek istedim.
+        </p>
+        <p>
+          Burada bir bahçe, gökyüzü, küçük karakterler ve açılmayı
+          bekleyen kapılar var. Hepsi sana bir şeyi hatırlatsın istedim:
+          Emek verilmiş küçük şeyler de çok değerli olabilir.
+        </p>
+        <p>
+          Birlikte güldüğümüz, yeni şeyler öğrendiğimiz ve geleceğe
+          dair hayaller kurduğumuz daha nice günümüz olsun.
+          Her gün kusursuz olmak zorunda değil; önemli olan güzel
+          şeylerin kıymetini bilmek ve birbirimizi anlamaya çalışmak.
+        </p>
+        <p>
+          Bu sayfayı yıllar sonra yeniden açarsan, umarım burada
+          yalnızca kodları değil, bugün hissettiğimiz güzel şeyleri
+          de hatırlarsın.
+        </p>
+        <p class="signature">Sevgiyle, Göktuğ ♡</p>
+      </article>
+    </div>
+  </section>
+  <section class="section">
+    <div class="wrap">
+      <div class="kicker">CHAPTER 05 · LITTLE THINGS</div>
+      <h2 class="heading">En güzel şeyler bazen küçüktür.</h2>
+      <div class="memory-grid">
+        <div class="memory"><div class="symbol">✧</div><h3>Küçük bir mesaj</h3><p>Yoğun bir günün ortasında gelen birkaç kelimenin bile yüzünde gülümseme oluşturması.</p></div>
+        <div class="memory"><div class="symbol">☾</div><h3>Gece sohbetleri</h3><p>Zamanın nasıl geçtiğini fark etmeden konuşmak ve sıradan bir günü hatıraya dönüştürmek.</p></div>
+        <div class="memory"><div class="symbol">🌷</div><h3>Birlikte gülmek</h3><p>Kimsenin anlamadığı bir şakaya ikinizin de gülmesi ve o anın yalnızca size ait olması.</p></div>
+        <div class="memory"><div class="symbol">∞</div><h3>Yeni başlangıçlar</h3><p>Henüz keşfedilmemiş yerler, öğrenilecek şeyler ve beraber yaşanabilecek güzel ihtimaller.</p></div>
+      </div>
+    </div>
+  </section>
+  <section class="section">
+    <div class="wrap">
+      <div class="kicker">CHAPTER 06 · TIME CAPSULE</div>
+      <h2 class="heading">Gelecekteki bize.</h2>
+      <p class="description">
+        Bugünden geleceğe küçük bir not bırak. Yazdığın metin
+        bu sayfada gösterilecek; sunucuya kaydedilmez.
+      </p>
+      <div class="capsule">
+        <p>Bir gün bu sayfayı yeniden açtığımızda kendimize ne söylemek isterdik?</p>
+        <textarea id="futureNote" rows="4" maxlength="500" placeholder="Gelecekteki bize bir not yaz..." style="width:100%;margin-top:20px;padding:15px;border:1px solid #ffffff25;border-radius:14px;background:#090713;color:white;font:inherit;line-height:1.7;resize:vertical"></textarea>
+        <button class="primary" onclick="saveNote()">Notu kapsüle bırak ✦</button>
+        <p id="noteResult" style="margin-top:16px"></p>
+      </div>
+    </div>
+  </section>
+  <section class="section">
+    <div class="wrap">
+      <div class="kicker">CHAPTER 07 · A PRIVATE CORNER</div>
+      <h2 class="heading">Gizli köşe.</h2>
+      <p class="description">Küçük bir kelimenin ardındaki sürpriz.</p>
+      <div class="secret-area">
+        <div style="font-size:35px">🔐</div>
+        <p style="margin-top:15px">İpucu: Bu sayfanın özel tarihi.<br>Gün ve ayı dört rakamla yaz.</p>
+        <input id="secretInput" type="password" maxlength="12" placeholder="Örn. 2904" autocomplete="off">
+        <button class="primary" onclick="checkSecret()">Kapıyı aç ♡</button>
+        <div class="error" id="secretError" aria-live="polite"></div>
+        <div class="secret-result" id="secretResult">
+          Bu küçük dünyanın içinde bir de gizli mesaj var:
+          <br><br>
+          Yaren, bu sayfa sana özel bir hatıra olsun diye hazırlandı.
+          Umarım her açtığında yüzünde küçük bir gülümseme oluşur. ♡
+        </div>
+      </div>
+    </div>
+  </section>
+  <section class="section final-section">
+    <div class="wrap">
+      <div class="kicker">THE LAST CHAPTER · NOT THE END</div>
+      <div class="final-heart">♡</div>
+      <h2 class="heading">Hikâyemiz devam ediyor.</h2>
+      <p class="description">
+        Bir tarih, iki isim ve birlikte biriktirilecek daha nice anı.
+        Bu küçük evrenin en güzel tarafı, ona anlam veren hikâye.
+      </p>
+      <button class="primary" onclick="finalSurprise()">Son sürprizi aç ✨</button>
+      <div style="margin-top:22px">
+        <button class="outline" onclick="window.scrollTo({top:0,behavior:'smooth'})">Başa dön ↑</button>
+      </div>
+    </div>
   </section>
   <footer>
-    Göktuğ & Yaren ❤️
-    <br>
-    İki kişi, bir hikâye, sayısız güzel ihtimal.
-    <br>
-    <span id="year"></span>
+    MADE WITH CARE · <span>LOVECRAFT DIGITAL</span>
+    <br>GÖKTUĞ × YAREN · 29.04.2026
   </footer>
 </main>
-<div id="message" onclick="closeMessage(event)">
-  <div class="message-card">
-    <h2 id="messageTitle">❤️</h2>
-    <p id="messageText"></p>
-    <button class="close-button" onclick="hideMessage()">
-      Bahçeye dön 🌷
-    </button>
+<div class="modal" id="modal" role="dialog" aria-modal="true" aria-labelledby="modalTitle" onclick="backdropClose(event)">
+  <div class="modal-card">
+    <div class="modal-icon" id="modalIcon">♡</div>
+    <h2 id="modalTitle">Başlık</h2>
+    <p id="modalText"></p>
+    <button class="outline" onclick="closeModal()">Evrene dön ✦</button>
   </div>
 </div>
 <script>
-const messages = {
+/* Yıldızlı arka plan */
+const cosmos = document.getElementById("cosmos");
+for (let i = 0; i < 125; i++) {
+  const star = document.createElement("span");
+  star.className = "star";
+  star.style.left = Math.random() * 100 + "%";
+  star.style.top = Math.random() * 100 + "%";
+  star.style.opacity = Math.random();
+  star.style.setProperty("--speed", (2 + Math.random() * 4) + "s");
+  cosmos.appendChild(star);
+}
+/* 29 Nisan 2026 tarihinden beri geçen süre */
+const startDate = new Date(2026, 3, 29, 20, 0, 0);
+function updateTimer() {
+  const now = new Date();
+  let diff = Math.max(0, now.getTime() - startDate.getTime());
+  const days = Math.floor(diff / 86400000);
+  diff %= 86400000;
+  const hours = Math.floor(diff / 3600000);
+  diff %= 3600000;
+  const minutes = Math.floor(diff / 60000);
+  const seconds = Math.floor((diff % 60000) / 1000);
+  document.getElementById("days").textContent = String(days).padStart(3, "0");
+  document.getElementById("hours").textContent = String(hours).padStart(2, "0");
+  document.getElementById("minutes").textContent = String(minutes).padStart(2, "0");
+  document.getElementById("seconds").textContent = String(seconds).padStart(2, "0");
+  document.getElementById("timerCaption").textContent =
+    now < startDate
+      ? "Özel anımızın başlangıcına kalan zaman."
+      : "29 Nisan 2026 · 20.00 tarihinden beri geçen zaman.";
+}
+updateTimer();
+setInterval(updateTimer, 1000);
+/* Dünyaya giriş */
+function enterUniverse() {
+  document.getElementById("welcome").style.display = "none";
+  document.getElementById("universe").style.display = "block";
+  window.scrollTo({ top: 0, behavior: "smooth" });
+  heartBurst(16);
+}
+/* Açılan hikâye kartları */
+const stories = {
   memory: {
-    title: "Anılar bahçesi 🌷",
-    text: "Her anımızın ayrı bir yeri var. Buraya birlikte yaşadığımız özel günleri, komik olayları ve unutamadığımız anları ekleyebiliriz. En güzel anılarımız daha yazılmadı."
+    icon: "🌷",
+    title: "Anılar bahçesi",
+    text: "Burası henüz yaşanmamış güzel anılara da yer açıyor. Birlikte gittiğimiz yerleri, kahkahalarımızı, ilkleri ve yıllar sonra bile hatırlamak isteyeceğimiz küçük anları burada düşleyebiliriz."
   },
   letter: {
-    title: "Sana mektubum 💌",
-    text: "Yaren, bu dünyayı senin için yaptım. Her ayrıntısında sana özel bir şey olsun istedim. Bir internet sayfasından çok, birlikte dönüp bakabileceğimiz küçük bir hatıra olsun."
+    icon: "💌",
+    title: "Sana mektubum",
+    text: "Yaren, bu sayfanın her köşesi sana özel bir hatıra olsun diye hazırlandı. Bazen uzun cümleler yerine küçük bir emek anlatır hissettiklerimizi. Bu da benim sana bıraktığım küçük bir hatıra."
   },
   future: {
-    title: "Geleceğimiz 🏡",
-    text: "Birlikte keşfedilecek şehirler, çekilecek fotoğraflar, gülünecek anılar ve kurulacak hayaller var. Umarım önümüzde bizi mutlu edecek çok güzel günler vardır."
-  },
-  secret: {
-    title: "Sadece sana özel 🔐",
-    text: "Bu küçük köşeye geldiğine göre sana bir şey söyleyeyim: Bu sayfanın her köşesine biraz emek, biraz hayal ve bolca sevgi koydum. ❤️"
+    icon: "🌠",
+    title: "Geleceğimiz",
+    text: "Henüz gidilmemiş yerler, çekilmemiş fotoğraflar, birlikte öğrenilecek şeyler ve kurulacak hayaller var. Geleceğin bütün cevaplarını bilmek gerekmiyor; güzel ihtimallere yer açmak yeterli."
   },
   promise: {
-    title: "Bir söz ⭐",
-    text: "Sana verebileceğim en güzel söz, her şeyin kusursuz olacağını söylemek değil. Güzel anların kıymetini bilmek, birbirimizi dinlemek ve birlikte büyümek için çaba göstermek."
+    icon: "🕊️",
+    title: "Bir söz",
+    text: "Her şeyin her zaman kusursuz olacağına dair değil; güzel anların kıymetini bilmeye, zor anlarda dinlemeye ve birbirimizi anlamak için çaba göstermeye dair bir söz."
+  },
+  stars: {
+    icon: "🌌",
+    title: "Yıldız haritamız",
+    text: "29 Nisan 2026, saat 20.00. Bu tarih bizim dijital evrenimizin merkezinde duruyor. Bu sayfadaki yıldızlar dekoratif bir gökyüzü; gerçek astronomik yıldız haritası değildir. Ama bu tarihin bizim için taşıdığı anlam, hikâyemizin bir parçası."
   },
   heart: {
-    title: "Kalbimin içi ❤️",
-    text: "Bazen tek bir insanın gülümsemesi koca bir günü güzelleştirebilir. Seninle paylaştığım güzel anlar için mutluyum, Yaren."
-  },
-  final: {
-    title: "Sürprizimiz ❤️",
-    text: "Yaren, bu sayfayı açtığında küçük bir dünyaya adım attın. Umarım her baktığında yüzünde bir gülümseme oluşur. Bu bizim hikâyemiz ve daha yazılacak çok güzel sayfalar var."
+    icon: "♡",
+    title: "Kalbimin içi",
+    text: "Bütün bu tasarımın arkasındaki fikir aslında çok basit: Birine özel bir şey hazırlamak, ona zaman ayırmak ve yıllar sonra bile gülümsetebilecek bir hatıra bırakmak."
   }
 };
-function enterWorld() {
-  document.getElementById("home").style.display = "none";
-  document.getElementById("world").style.display = "block";
-  window.scrollTo({ top: 0, behavior: "smooth" });
-  createHearts();
+function openModal(key) {
+  const story = stories[key];
+  if (!story) return;
+  document.getElementById("modalIcon").textContent = story.icon;
+  document.getElementById("modalTitle").textContent = story.title;
+  document.getElementById("modalText").textContent = story.text;
+  document.getElementById("modal").classList.add("show");
+  document.body.style.overflow = "hidden";
 }
-function showMessage(key) {
-  const item = messages[key];
-  if (!item) return;
-  document.getElementById("messageTitle").textContent = item.title;
-  document.getElementById("messageText").textContent = item.text;
-  document.getElementById("message").style.display = "flex";
+function closeModal() {
+  document.getElementById("modal").classList.remove("show");
+  document.body.style.overflow = "";
 }
-function hideMessage() {
-  document.getElementById("message").style.display = "none";
+function backdropClose(event) {
+  if (event.target.id === "modal") closeModal();
 }
-function closeMessage(event) {
-  if (event.target.id === "message") {
-    hideMessage();
+document.addEventListener("keydown", event => {
+  if (event.key === "Escape") closeModal();
+});
+/* Bahçe keşfi */
+let gardenIndex = 0;
+function gardenSurprise() {
+  const messages = [
+    "🌸 Bu bahçede her çiçek yeni bir anıyı temsil ediyor.",
+    "🌙 Aynı gökyüzünün altında, hikâyemize yer açıyoruz.",
+    "✨ En güzel sürpriz bazen emek verilmiş küçük bir şeydir.",
+    "💗 Bahçeyi keşfettin! Şimdi diğer kapıları da açabilirsin."
+  ];
+  const scene = document.getElementById("gardenScene");
+  const couple = document.getElementById("couple");
+  gardenIndex++;
+  if (gardenIndex % 2 === 1) {
+    couple.style.left = "58%";
+  } else {
+    couple.style.left = "50%";
+  }
+  const message = messages[(gardenIndex - 1) % messages.length];
+  document.querySelector(".garden-bottom").childNodes[0].textContent = message + " ";
+  heartBurst(5);
+}
+/* Geleceğe not: bu sürüm notu sunucuya kaydetmez */
+function saveNote() {
+  const text = document.getElementById("futureNote").value.trim();
+  const result = document.getElementById("noteResult");
+  if (!text) {
+    result.textContent = "Önce gelecekteki kendinize bir not yaz. ♡";
+    return;
+  }
+  result.textContent = "✦ Notun bu sayfada hazır. Kalıcı olarak saklamak için metni ayrıca kopyalamalısın.";
+  const note = document.createElement("p");
+  note.style.cssText = "margin-top:15px;padding:15px;border:1px solid #ff9dc944;border-radius:13px;color:#ffd6e9;white-space:pre-wrap;line-height:1.8";
+  note.textContent = text;
+  const old = document.getElementById("displayedNote");
+  if (old) old.remove();
+  note.id = "displayedNote";
+  result.after(note);
+}
+/* Şifre: 2904 */
+function checkSecret() {
+  const value = document.getElementById("secretInput").value.trim().replace(/\D/g, "");
+  const error = document.getElementById("secretError");
+  const result = document.getElementById("secretResult");
+  if (value === "2904") {
+    error.textContent = "";
+    result.style.display = "block";
+    heartBurst(18);
+  } else {
+    result.style.display = "none";
+    error.textContent = "Bu kapı henüz açılmadı. İpucunu tekrar düşün. ♡";
   }
 }
-function createHearts() {
-  for (let i = 0; i < 12; i++) {
-    setTimeout(() => {
-      const heart = document.createElement("span");
-      heart.className = "floating-heart";
-      heart.textContent = Math.random() > 0.5 ? "💗" : "✨";
-      heart.style.left = Math.random() * 100 + "vw";
-      heart.style.fontSize = (14 + Math.random() * 18) + "px";
-      document.body.appendChild(heart);
-      setTimeout(() => heart.remove(), 5000);
-    }, i * 300);
+document.getElementById("secretInput").addEventListener("keydown", event => {
+  if (event.key === "Enter") checkSecret();
+});
+/* Kalp ve yıldız efekti */
+function heartBurst(amount = 20) {
+  const layer = document.getElementById("heartLayer");
+  const symbols = ["♡", "♥", "✦", "✧", "💗"];
+  for (let i = 0; i < amount; i++) {
+    const item = document.createElement("span");
+    item.className = "burst";
+    item.textContent = symbols[Math.floor(Math.random() * symbols.length)];
+    item.style.left = Math.random() * 100 + "%";
+    item.style.fontSize = (13 + Math.random() * 22) + "px";
+    item.style.color = Math.random() > .5 ? "#ff9dc9" : "#c7b7ff";
+    item.style.animationDuration = (3 + Math.random() * 3) + "s";
+    layer.appendChild(item);
+    setTimeout(() => item.remove(), 6500);
   }
 }
-document.getElementById("year").textContent =
-  "© " + new Date().getFullYear() + " · Sevgiyle hazırlandı";
+function finalSurprise() {
+  heartBurst(55);
+  openModal("final");
+}
+stories.final = {
+  icon: "💗",
+  title: "Bu son değil.",
+  text: "Göktuğ × Yaren\n\n29.04.2026\n\nBu küçük evreni özel yapan yıldızlar veya kodlar değil; ona verdiğimiz anlam. Bir gün yeniden buraya geldiğinde, bugün hissettiğin güzel şeylerden birini hatırlaman dileğiyle. ♡"
+};
 </script>
 </body>
 </html>
