@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Bizim Dünyamız ❤️</title>
+<style>
+*{box-sizing:border-box}
+body{margin:0;background:#100814;color:#fff;font-family:Georgia,serif;overflow-x:hidden}
+button{font:inherit;cursor:pointer}
+.hero{min-height:100svh;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:25px;background:radial-gradient(ellipse at 50% 45%,#632044 0%,#281126 45%,#100814 100%);position:relative;overflow:hidden}
+.eyebrow{letter-spacing:4px;font:11px Arial,sans-serif;color:#ffb8d6}
+h1{font-size:clamp(44px,10vw,76px);margin:15px 0;background:linear-gradient(90deg,#fff,#ff9bc6,#fff);background-clip:text;color:transparent}
+.subtitle{color:#f4cddd;line-height:1.8;max-width:340px}
+.primary{border:0;border-radius:30px;padding:15px 25px;background:#ff8fbd;color:#341328;margin-top:24px;box-shadow:0 0 25px #ff8fbd44}
+.world{display:none;min-height:100svh;padding:30px 18px 60px;text-align:center;background:linear-gradient(#20112d,#572647 55%,#17101f)}
+.world h2{font-size:32px;margin:10px}
+.note{color:#f2cbdc;line-height:1.7}
+.garden{position:relative;max-width:620px;margin:25px auto;border:1px solid #ffffff24;border-radius:24px;min-height:340px;overflow:hidden;background:radial-gradient(ellipse at 50% 100%,#8c416d,#36203e 52%,#17111f)}
+.stars{position:absolute;inset:0;background-image:radial-gradient(#fff 1px,transparent 1.5px);background-size:37px 41px;opacity:.45}
+.moon{position:absolute;right:35px;top:24px;width:42px;height:42px;border-radius:50%;background:#ffe8d2;box-shadow:0 0 30px #ffd8df66}
+.tree{position:absolute;bottom:0;width:100%;height:95px;background:linear-gradient(transparent,#251329);border-radius:50% 50% 0 0}
+.path{position:absolute;bottom:-50px;left:34%;width:32%;height:170px;background:#c77aa344;border-radius:50%}
+.couple{position:absolute;top:43%;left:0;width:100%;display:flex;justify-content:center;align-items:center;gap:24px}
+.person{font-size:58px;filter:drop-shadow(0 0 10px #ff9cc7);animation:bob 2s ease-in-out infinite}
+.person:nth-child(2){animation-delay:.5s}
+.heart{font-size:22px;animation:pulse 1s infinite}
+@keyframes bob{50%{transform:translateY(-10px)}}
+@keyframes pulse{50%{transform:scale(1.35)}}
+.landmark{position:absolute;border:1px solid #ffd5e777;background:#381c38dd;color:white;border-radius:18px;padding:10px 13px;font-size:13px}
+.landmark.one{bottom:24px;left:12px}
+.landmark.two{bottom:24px;right:12px}
+.landmark.three{top:22px;left:18px}
+.panel{max-width:620px;margin:18px auto;padding:23px;border:1px solid #ffffff20;border-radius:22px;background:#ffffff08}
+.panel h3{color:#ffb8d6}
+.actions{display:flex;flex-wrap:wrap;justify-content:center;gap:10px}
+.actions button{border:1px solid #ffb8d666;background:#30172f;color:#fff;border-radius:25px;padding:12px 16px}
+.message{display:none;margin-top:20px;padding:22px;border-radius:18px;background:#fff0f6;color:#52223d;line-height:1.9;white-space:pre-line}
+footer{padding:25px;color:#d6a9c1;font-size:12px}
+.petal{position:fixed;top:-30px;pointer-events:none;z-index:5;animation:fall linear forwards}
+@keyframes fall{to{transform:translateY(110vh) rotate(360deg);opacity:0}}
+</style>
+</head>
+<body>
+<section class="hero" id="home">
+  <div class="eyebrow">SADECE İKİMİZE AİT</div>
+  <h1>Göktuğ & Yaren</h1>
+  <p class="subtitle">Dünyada milyonlarca hikâye var.<br>Benim en sevdiğim, bizimki. ❤️</p>
+  <button class="primary" onclick="enterWorld()">Bizim dünyamıza gir ❤️</button>
+  <p class="note">Bir kalp, iki insan, sayısız anı...</p>
+</section>
+
+<main class="world" id="world">
+  <p class="eyebrow">BİZİM KÜÇÜK EVRENİMİZ</p>
+  <h2>Hoş geldin sevgilim ❤️</h2>
+  <p class="note">Birlikte keşfedecek çok şeyimiz var.</p>
+
+  <div class="garden">
+    <div class="stars"></div><div class="moon"></div>
+    <div class="path"></div><div class="tree"></div>
+    <div class="couple">
+      <div class="person" title="Göktuğ">🧑🏻</div>
+      <div class="heart">❤️</div>
+      <div class="person" title="Yaren">👩🏻</div>
+    </div>
+    <button class="landmark one" onclick="showMessage('memory')">🌸 Anılar bahçesi</button>
+    <button class="landmark two" onclick="showMessage('letter')">💌 Mektup</button>
+    <button class="landmark three" onclick="showMessage('future')">✨ Geleceğimiz</button>
+  </div>
+
+  <section class="panel">
+    <h3>Birlikte keşfedelim</h3>
+    <p class="note">Bir bölüme dokun ve sana sakladığım mesajı bul.</p>
+    <div class="actions">
+      <button onclick="showMessage('memory')">📸 Anılarımız</button>
+      <button onclick="showMessage('letter')">💌 Mektubum</button>
+      <button onclick="showMessage('future')">🌙 Bir dilek</button>
+      <button onclick="showMessage('secret')">🎁 Gizli sürpriz</button>
+    </div>
+    <div class="message" id="message"></div>
+  </section>
+  <footer>Göktuğ ❤️ Yaren · Bizim dünyamız</footer>
+</main>
+
+<script>
+function enterWorld(){
+  document.getElementById('home').style.display='none';
+  document.getElementById('world').style.display='block';
+  window.scrollTo(0,0);
+  makePetals();
+}
+function showMessage(type){
+  const messages={
+    memory:'📸 ANILAR BAHÇESİ\n\nBirlikte yaşadığımız güzel anılar, bu dünyanın en değerli hazinesi. Buraya fotoğraflarımızı ve tarihlerini ekleyeceğiz. ❤️',
+    letter:'💌 SANA BİR MEKTUBUM VAR\n\nYaren, hayatıma kattığın güzellikleri bazen kelimelerle anlatmak zor. Seninle biriktirdiğimiz anıların her biri benim için çok kıymetli. Bu dünya, sana olan sevgimi anlatabilmek için hazırladığım küçük bir yer. ❤️',
+    future:'✨ GELECEĞİMİZE\n\nDaha keşfedeceğimiz yerler, yaşayacağımız güzel günler ve biriktireceğimiz nice anılar olsun. En güzel hikâyemiz henüz yazılmadı. ❤️',
+    secret:'🎁 GİZLİ SÜRPRİZ\n\nBurası sadece sana sakladığım özel mesajlar ve sürprizler için. Bu bölüme birlikte karar vereceğiz. ❤️'
+  };
+  const box=document.getElementById('message');
+  box.textContent=messages[type];
+  box.style.display='block';
+  box.scrollIntoView({behavior:'smooth',block:'nearest'});
+}
+function makePetals(){
+  for(let i=0;i<22;i++){
+    setTimeout(()=>{
+      const p=document.createElement('div');
+      p.className='petal';
+      p.textContent=Math.random()>.5?'🌸':'💕';
+      p.style.left=Math.random()*100+'vw';
+      p.style.animationDuration=(4+Math.random()*5)+'s';
+      p.style.fontSize=(12+Math.random()*15)+'px';
+      document.body.appendChild(p);
+      setTimeout(()=>p.remove(),9500);
+    },i*250);
+  }
+}
+</script>
+</body>
+</html>
